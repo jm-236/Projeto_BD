@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "patrimonioDB (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "patrimonioDB (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

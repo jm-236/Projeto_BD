@@ -1,0 +1,79 @@
+<Page
+    x:Class="patrimonioDB.Features.Login.LoginView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Width="400" 
+            Spacing="20">
+            
+            <!-- Título -->
+            <TextBlock 
+                Text="Login" 
+                FontSize="32" 
+                FontWeight="Bold" 
+                HorizontalAlignment="Center"
+                Margin="0,0,0,20"/>
+
+            <!-- Campo de Email -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Email:" FontWeight="SemiBold"/>
+                <TextBox 
+                    x:Name="EmailTextBox"
+                    PlaceholderText="seu.email@exemplo.com"
+                    Height="40"/>
+            </StackPanel>
+
+            <!-- Campo de Senha -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Senha:" FontWeight="SemiBold"/>
+                <PasswordBox 
+                    x:Name="SenhaPasswordBox"
+                    PlaceholderText="Digite sua senha"
+                    Height="40"/>
+            </StackPanel>
+
+            <!-- Mensagem de Erro -->
+            <TextBlock 
+                x:Name="MensagemErro"
+                Foreground="Red"
+                TextWrapping="Wrap"
+                HorizontalAlignment="Center"
+                Visibility="Collapsed"/>
+
+            <!-- Indicador de Loading -->
+            <ProgressRing 
+                x:Name="LoadingRing"
+                IsActive="False"
+                Visibility="Collapsed"
+                Width="40"
+                Height="40"
+                HorizontalAlignment="Center"/>
+
+            <!-- Botão de Entrar -->
+            <Button 
+                x:Name="EntrarButton"
+                Content="Entrar" 
+                Click="EntrarButton_Click"
+                HorizontalAlignment="Stretch"
+                Height="40"
+                Style="{StaticResource AccentButtonStyle}"/>
+
+            <!-- Mensagem de Sucesso -->
+            <TextBlock 
+                x:Name="MensagemSucesso"
+                Foreground="Green"
+                TextWrapping="Wrap"
+                HorizontalAlignment="Center"
+                Visibility="Collapsed"/>
+
+        </StackPanel>
+    </Grid>
+</Page>
