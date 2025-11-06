@@ -362,5 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# Configurações sensíveis de banco de dados
+# Configuraï¿½ï¿½es sensï¿½veis de banco de dados
 **/ConnectionConfig.cs
+Shared/Database/ConnectionConfig.cs
