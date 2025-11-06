@@ -17,14 +17,12 @@ namespace patrimonioDB.Features.Login
 
         private async void EntrarButton_Click(object sender, RoutedEventArgs e)
         {
-            // Esconder mensagens anteriores
             MensagemErro.Visibility = Visibility.Collapsed;
             MensagemSucesso.Visibility = Visibility.Collapsed;
 
-            // Validação básica de campos vazios
             if (string.IsNullOrWhiteSpace(EmailTextBox.Text))
             {
-                MostrarErro("Por favor, informe o email.");
+                MostrarErro("Por favor, informe o login.");
                 return;
             }
 
@@ -34,31 +32,34 @@ namespace patrimonioDB.Features.Login
                 return;
             }
 
-            // Mostrar loading
             LoadingRing.IsActive = true;
             LoadingRing.Visibility = Visibility.Visible;
             EntrarButton.IsEnabled = false;
 
             try
             {
-                using (var connection = DatabaseConnection.GetConnection())
+                var loginService = new LoginService();
+
+                // ✅ REMOVA o Task.Run - execute direto na UI thread
+                var usuario = loginService.Autenticar(EmailTextBox.Text, SenhaPasswordBox.Password);
+
+                if (usuario != null)
                 {
-                    MostrarSucesso($"Conectado ao banco! Estado: {connection.State}");
-                
+                    MostrarSucesso($"Login realizado com sucesso!\n\nBem-vindo, {usuario.Nome}!");
+
+                    // TODO: Navegar para a próxima tela
                 }
-            }
-            
-            catch (NpgsqlException ex)
-            {
-                MostrarErro($"Npgsql Error:\n{ex.Message}\nCode: {ex.ErrorCode}\nSqlState: {ex.SqlState}");
+                else
+                {
+                    MostrarErro("Login ou senha incorretos.");
+                }
             }
             catch (Exception ex)
             {
-                MostrarErro($"Error: {ex.Message}\n{ex.StackTrace}");
+                MostrarErro($"Erro: {ex.Message}");
             }
             finally
             {
-                // Esconder loading
                 LoadingRing.IsActive = false;
                 LoadingRing.Visibility = Visibility.Collapsed;
                 EntrarButton.IsEnabled = true;
